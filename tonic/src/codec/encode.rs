@@ -235,11 +235,6 @@ fn finish_encoding(
         ));
     }
 
-    if len > u32::MAX as usize {
-        return Err(Status::resource_exhausted(format!(
-            "Cannot return body with more than 4GB of data but got {len} bytes"
-        )));
-    }
     {
         let mut buf = &mut buf[..HEADER_SIZE];
         buf.put_u8(compression_encoding.is_some() as u8);
